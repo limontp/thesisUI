@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Collection for thesis</title>
+    <style>
+
+        body{
+            background-color: #ffffff;
+        }
+
+        table{
+            padding: 5px;
+            border: solid 2px black;
+
+            width: 60%;
+            margin: auto;
+            margin-top: 50px;
+            background-color: #fafafa;
+        }
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #post{
+            background-color: #f0f0f0;
+        }
+        ul{
+            list-style-type: none;
+            text-align: left;
+        }
+
+    </style>
+
+</head>
+<body align="center">
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Labels</th>
+  </tr>
+  <tr>
+    <td id="post" width="75%">{{ post.status }}</td>
+    <td id="lbs" width="25%">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input name="pid" type="hidden" value="{{ post.pid }}">
+            <input name="status" type="hidden" value="{{ post.status }}">
+            <ul>
+            {% for label in ls %}
+                <li>
+                    <input type="checkbox" name="{{ label }}" value="1">
+                    <label>{{ label }}</label>
+                </li>
+            {% endfor %}
+            </ul>
+            <input type="submit" value="Submit">
+        </form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
